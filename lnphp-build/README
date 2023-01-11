@@ -1,0 +1,32 @@
+php编译环境，用于编译一些.so文件
+
+<br/>
+
+可通过pecl编译，命令如下：
+
+```
+pecl install <module>
+```
+
+<br/>
+
+对于pecl没有的包，可手动编译，命令如下：
+
+```
+1. wget下载，tar解压
+2. phpize
+3. ./configure --with-php-config=/usr/bin/php-config
+4. make
+5. make install
+```
+
+<br/>
+
+拷贝出docker容器，可通过docker run -v共享磁盘 或 docker cp
+
+<br/>
+
+部署php扩展：
+
+1. 将.so文件放在/usr/lib64/php/modules/目录下
+2. 在/etc/php.ini添加extension=xxx

@@ -1,0 +1,24 @@
+1. 构建镜像
+sudo docker build --tag xxx .
+
+2. 运行, cd到项目根目录再执行
+   -v 挂载当前目录的项目代码，之后修改本地代码，docker内也能生效
+   -p 指定端口
+   --name xxx 可指定container name
+   最后可接命令，如bash
+sudo docker run --rm -d -p 8080:80 -v `pwd`:/data1/html <image> <命令>
+
+3. 停止, name可通过sudo docker ps查看
+sudo docker kill <name>
+
+4. 查看当前运行的container
+sudo docker ps -a
+
+5. 可通过exec命令连接到运行中的docker，查看正在运行的环境。name可通过sudo docker ps查看
+sudo docker exec -it <name> bash
+
+6. 推送到docker仓库
+sudo docker login -u xxx <registry>
+sudo docker tag <image> <registry>/<namespace>/<img>
+sudo docker push <registry>/<namespace>/<img>
+sudo docker logout
