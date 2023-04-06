@@ -7,7 +7,7 @@ php运行环境，基于lnp，加默认conf和mc
 1. 创建代码目录和日志目录
     mkdir /data0/html/<proj> /data0/logs/<proj>
 2. 运行docker
-    docker run -d -p <port 50001>:80 -v /data0/html/<proj>:/html -v /data0/logs/<proj>:/logs --restart=always lnp-runtime
+    docker run -d -p <port 50001>:80 -v /data0/html/<proj>:/html -v /data0/logs/<proj>:/logs --restart=always --name=<proj> lnp-runtime
 3. 配置nginx，使用proxy_pass到127.0.0.1:<port>
     vim /etc/nginx/conf.d/<proj>.conf
     systemctl restart nginx
