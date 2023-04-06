@@ -1,4 +1,5 @@
-FROM lnp
+# FROM lnp
+FROM registry.cn-beijing.aliyuncs.com/bjgqhc/lnp:v1
 
 # epel源和PowerTools源
 RUN yum install -y epel-release dnf-plugins-core \
