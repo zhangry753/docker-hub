@@ -7,3 +7,7 @@ wget https://storage.bjgqhc.com/_docker/nginx.conf -O /etc/nginx/nginx.conf; \
 systemctl enable nginx && systemctl start nginx; \
 
 // vim preference
+
+// podman-docker dnsname
+yum install dnsmasq
+拷贝dnsname到/usr/libexec/cni/
