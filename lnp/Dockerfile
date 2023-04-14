@@ -28,6 +28,8 @@ COPY conf/php-fpm.conf /etc/php-fpm.conf
 # 偏好配置
 COPY preference/.bashrc preference/vim /root/
 
+ENV TZ=Asia/Shanghai
+
 # 启动
 EXPOSE 80
 COPY start.sh /etc/start.sh
