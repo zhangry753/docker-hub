@@ -19,6 +19,7 @@ RUN rm /etc/php.d/*
 
 # 配置php-fpm、nginx
 RUN useradd -s /sbin/nologin www; \
+    chown -R www /var/lib/nginx; \
     mkdir -p /run/php-fpm /logs/nginx /logs/php-fpm; \
     rm /etc/nginx/conf.d/* /etc/nginx/default.d/* /etc/php-fpm.d/*;
 COPY conf/nginx.conf /etc/nginx/nginx.conf
