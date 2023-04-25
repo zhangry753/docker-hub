@@ -9,3 +9,5 @@ RUN mkdir -p /logs/nginx /logs/php-fpm && chown -R www:www /logs/nginx /logs/php
 # memcached
 RUN yum install -y memcached; \
     sed -i "3i /usr/bin/memcached -d -u www -l 127.0.0.1" /etc/start.sh;
+
+EXPOSE 80
