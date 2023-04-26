@@ -12,6 +12,7 @@ systemctl enable nginx && systemctl start nginx; \
 
 // podman-docker dnsname
 yum install dnsmasq
-上传dnsname到/usr/libexec/cni/
+编译dnsname
+解压dnsname-main.zip，make，make install PREFIX=/usr
 
 // 挂载硬盘参考：https://help.aliyun.com/document_detail/34377.html?spm=a2c4g.25365.0.i1
