@@ -2,7 +2,7 @@ yum install -y docker nginx php git vim lrzsz zip unzip; \
 // 安装php依赖了httpd，禁止开机自启
 systemctl disable httpd
 // podman需要启动服务才支持restart
-systemctl disable podman-restart
+systemctl enable podman-restart
 
 // nginx
 mkdir -p /data0/logs /data0/html /data0/nginxlogs; \
