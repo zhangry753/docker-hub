@@ -1,4 +1,6 @@
 yum install -y docker nginx php git vim lrzsz zip unzip; \
+// 安装php依赖安装了httpd，禁用开机自启
+systemctl disable httpd
 
 // nginx
 mkdir -p /data0/logs /data0/html /data0/nginxlogs; \
