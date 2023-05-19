@@ -20,11 +20,19 @@ RUN rm /etc/php.d/*
 # 配置php-fpm、nginx
 RUN useradd -s /sbin/nologin www; \
     chown -R www /var/lib/nginx; \
-    mkdir -p /run/php-fpm /logs/nginx /logs/php-fpm; \
+    mkdir -p /run/php-fpm; \
     rm /etc/nginx/conf.d/* /etc/nginx/default.d/* /etc/php-fpm.d/*;
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 COPY conf/nginx.fastcgi_params /etc/nginx/fastcgi_params
 COPY conf/php-fpm.conf /etc/php-fpm.conf
+
+# 配置rsyslog
+COPY conf/rsyslog.conf /tmp/rsyslog.conf
+RUN mv /etc/rsyslog.conf /etc/rsyslog.conf.default; \
+    mv /tmp/rsyslog.conf /etc/rsyslog.conf
+
+# yum安装，其他
+RUN yum install -y  rsyslog net-tools lsof;
 
 # 偏好配置
 COPY preference/.bashrc preference/vim /root/
@@ -33,5 +41,5 @@ ENV TZ=Asia/Shanghai
 
 # 启动
 EXPOSE 80
-COPY start.sh /etc/start.sh
+COPY --chmod=744 start.sh /etc/start.sh
 CMD ["/etc/start.sh"]
