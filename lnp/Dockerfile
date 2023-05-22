@@ -5,12 +5,18 @@ RUN sed -i -e "s|mirrorlist=|#mirrorlist=|g" \
            -e "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*; \
     curl https://mirrors.aliyun.com/repo/Centos-8.repo > /etc/yum.repos.d/CentOS-Base.repo;
 
-# yum安装，php、php-fpm、nginx等
-RUN yum install -y vim php php-fpm nginx;
+## 安装rpm
+#COPY rpm/ /tmp/rpm/
+#RUN yum install -y epel-release && yum localinstall -y /tmp/rpm/*
 
-# 安装rpm
-COPY rpm/ /tmp/rpm/
-RUN yum install -y epel-release && yum localinstall -y /tmp/rpm/*
+# yum安装，php、php-fpm、nginx等
+RUN yum install -y epel-release; \
+    yum install -y php php-fpm nginx memcached crontabs rsyslog rsync \
+    # 依赖
+    ImageMagick libmcrypt libmemcached librdkafka libzip php-mysqlnd zlib;
+# yum安装 其他包
+RUN yum install -y vim net-tools lsof;
+
 
 # 配置php
 COPY php/php.ini /etc/php.ini
@@ -30,9 +36,6 @@ COPY conf/php-fpm.conf /etc/php-fpm.conf
 COPY conf/rsyslog.conf /tmp/rsyslog.conf
 RUN mv /etc/rsyslog.conf /etc/rsyslog.conf.default; \
     mv /tmp/rsyslog.conf /etc/rsyslog.conf
-
-# yum安装，其他
-RUN yum install -y  rsyslog net-tools lsof;
 
 # 偏好配置
 COPY preference/.bashrc preference/vim /root/

@@ -1,0 +1,4 @@
+linux(centos8) + nginx + php
+安装一些常用依赖和工具、常用配置
+
+注：不在阿里ECS上docker build可能无法下载rpm包，报502
