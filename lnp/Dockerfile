@@ -1,5 +1,7 @@
 FROM centos:8
 
+COPY Dockerfile /Dockerfile
+
 # centos8停止维护了需要改repo才能用yum；同时改成阿里源
 RUN sed -i -e "s|mirrorlist=|#mirrorlist=|g" \
            -e "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*; \

@@ -1,6 +1,8 @@
 # FROM lnp
 FROM registry.cn-beijing.aliyuncs.com/bjgqhc/lnp
 
+COPY Dockerfile /Dockerfile
+
 ARG BACKUP_DIR=/logs/backup
 
 # 脚本输出日志保留多少天

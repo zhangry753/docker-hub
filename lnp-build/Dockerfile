@@ -1,6 +1,8 @@
 # FROM lnp
 FROM registry.cn-beijing.aliyuncs.com/bjgqhc/lnp
 
+COPY Dockerfile /Dockerfile
+
 # epel源和PowerTools源
 RUN yum install -y epel-release dnf-plugins-core \
     && dnf config-manager --set-enabled powertools
