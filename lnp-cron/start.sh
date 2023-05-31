@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# 添加环境变量到crontab
+sed -i -e "1i LOG_MAXDAY=$LOG_MAXDAY" /etc/crontab
+
 # 加载crontab文件
 if [ -f "/cron/crontab" ];then 
     crontab /cron/crontab; 
